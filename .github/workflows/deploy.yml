@@ -40,8 +40,8 @@ jobs:
 
       - name: Fix GitHub Pages routing
         run: |
-          touch dist/.nojekyll
-          cp dist/index.html dist/404.html || true
+          touch dist/medical-docs-api/.nojekyll
+          cp dist/medical-docs-api/index.html dist/medical-docs-api/404.html || true
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
@@ -49,7 +49,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./medical-docs/dist"
+          path: "./medical-docs/dist/medical-docs-api"
+
 
   deploy:
     environment:
