@@ -38,6 +38,11 @@ jobs:
       - name: Build Zudoku project
         run: npm run build
 
+      - name: Fix GitHub Pages routing
+        run: |
+          touch dist/.nojekyll
+          cp dist/index.html dist/404.html || true
+
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
