@@ -1,0 +1,48 @@
+name: Deploy Zudoku to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  pages: write
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          cd medical-docs
+          npm install
+
+      - name: Build project
+        run: |
+          cd medical-docs
+          npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: medical-docs/dist
+
+      - name: Show site URL
+        run: |
+          echo "::notice:: Site deployed! Visit: https://<USERNAME>.github.io/<REPO>/"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/deploy-pages@v4

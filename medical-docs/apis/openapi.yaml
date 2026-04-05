@@ -1,0 +1,152 @@
+openapi: 3.0.0
+info:
+  title: Medical System API
+  version: 1.0.0
+  description: API for managing doctors and appointments
+
+servers:
+  - url: http://localhost:3000/api
+
+paths:
+  /doctors:
+    get:
+      summary: Get all doctors
+      responses:
+        "200":
+          description: List of doctors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Doctor"
+
+    post:
+      summary: Create doctor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Doctor"
+      responses:
+        "201":
+          description: Doctor created
+
+  /doctors/{id}:
+    get:
+      summary: Get doctor by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Doctor object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Doctor"
+
+    put:
+      summary: Update doctor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Doctor"
+      responses:
+        "200":
+          description: Updated
+
+    delete:
+      summary: Delete doctor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /appointments:
+    get:
+      summary: Get all appointments
+      responses:
+        "200":
+          description: List of appointments
+
+    post:
+      summary: Create appointment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Appointment"
+      responses:
+        "201":
+          description: Created
+
+  /appointments/{id}:
+    get:
+      summary: Get appointment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Appointment object
+
+    delete:
+      summary: Delete appointment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+components:
+  schemas:
+    Doctor:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        specialization:
+          type: string
+        email:
+          type: string
+
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: integer
+        doctorId:
+          type: integer
+        patientName:
+          type: string
+        date:
+          type: string
+          format: date-time
+        status:
+          type: string
