@@ -34,7 +34,7 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: medical-docs/dist
+          path: ./medical-docs/dist
 
   deploy:
     needs: build
