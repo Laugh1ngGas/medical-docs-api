@@ -26,10 +26,10 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        run: cd ./medical-docs && npm install
 
       - name: Build
-        run: npm run build
+        run: cd ./medical-docs && npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
