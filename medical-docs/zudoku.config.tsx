@@ -54,6 +54,12 @@ const config: ZudokuConfig = {
           label: "About",
           icon: "info", 
         },
+        {
+          type: "link",
+          to: "/srs",
+          label: "Software Requirement Specification",
+          icon: "file",
+        },
       ],
     },
     {
@@ -65,6 +71,11 @@ const config: ZudokuConfig = {
       type: "link",
       to: "/about",
       label: "About",
+    },
+    {
+      type: "link",
+      to: "/srs",
+      label: "Software Requirement Specification",
     },
   ],
   redirects: [{ from: "/", to: "/introduction" }],
