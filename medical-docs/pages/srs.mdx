@@ -3,69 +3,143 @@
 ## 1. Introduction
 
 **1.1 Purpose:**
-This document defines the functional and non-functional requirements for a web platform for intelligent meal planning using personalization algorithms. The purpose of the system is to automate the process of generating personalized menus for users based on their available ingredients, culinary preferences, and dietary restrictions.
-1.2 Scope:
-The system is being developed to address the challenge of daily meal planning in the context of a fast-paced lifestyle and inflation. The platform will enable users to:
+This document defines the functional and non-functional requirements for a web platform for cryptocurrency price tracking with an integrated crypto wallet. The purpose of the system is to provide users with a convenient tool for monitoring cryptocurrency markets, managing their digital assets, and analyzing portfolio performance in real time.
 
-- Reduce the time spent searching for recipes and making dietary decisions.
-- Optimize food expenses.
-- Minimize food waste by using ingredients already available at home.
-  In the future, the platform's architecture will support monetization and integration with grocery delivery services.
+**1.2 Scope:**
+The system is being developed to address the growing need for accessible and user-friendly cryptocurrency management tools. The platform will enable users to:
+
+- Track real-time cryptocurrency prices and market trends.
+- Manage a personal crypto portfolio.
+- Analyze asset performance and historical data.
+- Simulate or manage transactions (buy/sell operations).
+- Make informed investment decisions.
+
+In the future, the platform's architecture will support monetization and integration with external services such as exchanges and blockchain wallets.
 
 ## 2. Overall Description
 
-2.1 Operating Environment:
+**2.1 Operating Environment:**
 The software product is based on a modern client-server architecture:
 
-- Backend: The server-side components and REST API are developed using C#.
-- Database: The Supabase cloud platform (based on PostgreSQL) is used to store relational data (users, recipes, ingredients) and manage authentication.
-- Frontend: A responsive web interface accessible via modern browsers (Chrome, Safari, Edge) on desktop and mobile devices.
+- Backend: Server-side components and REST API developed using Node.js / Express.
+- Database: Cloud database (e.g., PostgreSQL, Supabase, or Firebase) used to store users, transactions, and portfolio data.
+- Frontend: A responsive web interface built with React.js, accessible via modern browsers (Chrome, Firefox, Edge, Safari).
 
-  2.2 User Characteristics:
+**2.2 User Characteristics:**
 
-- Unregistered user: Has access to the general catalog of popular recipes and the platform’s information page.
-- Registered user: Has a personal account, can specify available ingredients, set dietary restrictions, receive personalized recommendations, and generate shopping lists.
-- System administrator: Has access to manage the recipe database, ingredients, and user accounts.
+- Unregistered user: Can view general cryptocurrency market data and basic analytics.
+- Registered user: Has a personal account, can manage a crypto portfolio, track assets, and perform transactions.
+- System administrator: Has access to system configuration, monitoring tools, and user management.
 
 ## 3. System Features
 
-3.1. User Profile Management
+**3.1 User Account Management**
 
-- Registration, authentication, and password recovery (powered by Supabase Auth).
-- Storage of personal data: preferences regarding world cuisines, allergies, dietary restrictions (e.g., vegan, gluten-free), and target calorie intake.
+- Registration, authentication, and password recovery.
+- Secure login/logout functionality.
+- Storage of user profile data.
 
-  3.2. Virtual Fridge (Inventory Management)
+**3.2 Cryptocurrency Market Tracking**
 
-- Add, edit, and delete ingredients that the user currently has at home.
-- Option to specify the quantity and expiration date of items.
+- Display a list of cryptocurrencies with key metrics:
+  - Current price
+  - 24h price change
+  - Market capitalization
+  - Trading volume
 
-  3.3. Smart Menu Generation
+- Search and filtering functionality.
 
-- Operation of a recommendation algorithm that selects recipes from the database by matching available ingredients (from section 3.2) and user restrictions (from section 3.1).
-- Sorting results by relevance (percentage of ingredient matches).
+**3.3 Price Charts & Analytics**
 
-  3.4. Shopping List Module (Shopping List Generator)
+- Display historical price charts.
+- Ability to select time period (day, week, month).
+- Visualization of trends.
 
-- Automatically generates a shopping list based on a selected recipe or a multi-day menu.
-- The system should calculate the difference between the ingredients needed for the recipe and those already in the "virtual fridge."
+**3.4 Crypto Wallet (Portfolio Management)**
 
-  3.5. Recipe Catalog
+- Add and manage crypto assets.
+- View total portfolio balance.
+- Automatic calculation of asset values.
 
-- View detailed information about a dish: photos, preparation steps, nutritional information (calories, protein, fat, carbohydrates), and cooking time.
-- Save recipes to the "Favorites" category.
+**3.5 Transaction Management**
+
+- Add transactions (buy/sell).
+- Store transaction details (amount, price, date).
+- View transaction history.
+
+**3.6 Watchlist Feature**
+
+- Add cryptocurrencies to favorites.
+- Quick access to selected assets.
 
 ## 4. Non-Functional Requirements
 
-4.1. Performance:
+**4.1 Performance:**
 
-- The time required to generate a personalized menu must not exceed 3 seconds.
-- The server-side must be able to handle concurrent requests through asynchronous processing in C#.
+- Response time should not exceed 2 seconds.
+- The system should support at least 1000 concurrent users.
 
-  4.2. Security:
+**4.2 Security:**
 
-- All API requests involving personal data must be secured using a Bearer Token (JWT) generated by Supabase.
-- User passwords are not stored in plain text (hashed at the Supabase level).
+- All requests must use HTTPS.
+- Authentication via JWT tokens.
+- Passwords must be securely hashed.
+- Protection against common vulnerabilities (SQL Injection, XSS, CSRF).
 
-  4.3. Reliability & Scalability:
+**4.3 Reliability & Scalability:**
 
-- The database architecture must support the addition of new external APIs (e.g., to retrieve current prices at supermarkets) without altering the existing structure.
+- System uptime should be at least 99%.
+- The architecture must support scaling and future expansion.
+
+## 5. External Interface Requirements
+
+**5.1 User Interface:**
+
+- Responsive and user-friendly design.
+- Dashboard with key metrics.
+
+**5.2 API Interface:**
+
+- Integration with external cryptocurrency APIs (e.g., CoinGecko).
+
+**5.3 Database Interface:**
+
+- Storage of users, wallets, transactions, and watchlists.
+
+## 6. Constraints
+
+- Use of JavaScript/TypeScript technologies.
+- Dependence on third-party APIs.
+- Internet connection required.
+
+## 7. Data Models
+
+- User
+- Wallet
+- Transaction
+- Cryptocurrency
+- Watchlist
+
+## 8. Testing
+
+- Functional testing
+- UI testing
+- API testing
+- Performance testing
+
+## 9. Development Plan
+
+- Requirements analysis
+- Design
+- Development
+- Testing
+- Deployment
+
+## 10. Acceptance Criteria
+
+The system is considered complete if:
+
+- All features are implemented correctly.
+- No critical bugs are present.
+- The interface meets usability requirements.
+- Performance requirements are satisfied.
